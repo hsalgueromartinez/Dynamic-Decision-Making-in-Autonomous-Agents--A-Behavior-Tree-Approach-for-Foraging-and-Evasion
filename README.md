@@ -164,6 +164,6 @@ AAgent_Python/
 ---
 
 ## 👥 Authors
-**David Piera** - *Developer & Researcher*
-**Hector Salguero** - *Developer & Researcher*
+*  **David Piera** - *Developer & Researcher*
+*  **Hector Salguero** - *Developer & Researcher*
 ---
