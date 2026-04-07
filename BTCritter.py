@@ -26,7 +26,6 @@ class BN_ForwardRandom(pt.behaviour.Behaviour):
     def terminate(self, new_status: common.Status):
         if self.my_goal: self.my_goal.cancel()
 
-
 class BN_TurnRandom(pt.behaviour.Behaviour):
     def __init__(self, aagent):
         self.my_goal = None
@@ -44,7 +43,6 @@ class BN_TurnRandom(pt.behaviour.Behaviour):
     def terminate(self, new_status: common.Status):
         if self.my_goal: self.my_goal.cancel()
 
-
 class BN_ObstacleAhead(pt.behaviour.Behaviour):
     def __init__(self, aagent):
         super(BN_ObstacleAhead, self).__init__("BN_ObstacleAhead")
@@ -55,10 +53,9 @@ class BN_ObstacleAhead(pt.behaviour.Behaviour):
         for index in [1, 2, 3]:
             hit = sensor_obj_info[index]
             # ADDED 'AlienFlower' and 'CritterManta Ray' TO THE OBSTACLE LIST!
-            if hit and hit.get("tag") in ["Wall", "Rock", "AlienFlower", "CritterManta Ray","Container"]:
+            if hit and hit.get("tag") in ["Wall", "Rock", "enFlAliower", "CritterManta Ray","Container"]:
                 return pt.common.Status.SUCCESS
         return pt.common.Status.FAILURE
-
 
 # ==========================================
 # 2. CRITTER-SPECIFIC CONDITIONS
@@ -108,7 +105,6 @@ class BN_DetectAstronaut(pt.behaviour.Behaviour):
         self.my_agent.astronaut_dist = best_dist
         return pt.common.Status.SUCCESS
 
-
 class BN_CloseToAstronaut(pt.behaviour.Behaviour):
     def __init__(self, aagent):
         super().__init__("BN_CloseToAstronaut")
@@ -119,11 +115,10 @@ class BN_CloseToAstronaut(pt.behaviour.Behaviour):
         
         # 1.5 Unity units means their colliders have successfully bumped into each other
         if dist <= 1.5:
+            print("💥 BITE DELIVERED! Retreating! 💥")
             return pt.common.Status.SUCCESS
             
         return pt.common.Status.FAILURE
-    
-
 # ==========================================
 # 3. CRITTER-SPECIFIC ACTIONS
 # ==========================================
@@ -163,7 +158,6 @@ class BN_ApproachAstronaut(pt.behaviour.Behaviour):
         if self.move_task and not self.move_task.done():
             self.move_task.cancel()
 
-
 class BN_Retreat(pt.behaviour.Behaviour):
     def __init__(self, aagent):
         super().__init__("BN_Retreat")
@@ -198,7 +192,6 @@ class BN_Retreat(pt.behaviour.Behaviour):
         if self.retreat_task and not self.retreat_task.done():
             self.retreat_task.cancel()
 
-
 # ==========================================
 # 4. THE CRITTER BEHAVIOR TREE
 # ==========================================
@@ -218,8 +211,8 @@ class BTCritter:
         # PRIORITY 2: ATTACK
         attack_seq = pt.composites.Sequence(name="Attack Sequence", memory=False)
         attack_seq.add_children([
-            BN_DetectAstronaut(aagent),    
-            BN_ApproachAstronaut(aagent)  
+            BN_DetectAstronaut(aagent),    # Do I see her?
+            BN_ApproachAstronaut(aagent)   # Chase her!
         ])
 
         # PRIORITY 3: SAFE ROAMING
@@ -241,11 +234,12 @@ class BTCritter:
             roam_sequence       
         ])
 
+
         # ROOT
         self.root = pt.composites.Selector(name="Critter Root", memory=False)
         self.root.add_children([
-            retreat_seq,      
-            attack_seq,     
+            retreat_seq,
+            attack_seq,
             safe_roam_selector
         ])
 
