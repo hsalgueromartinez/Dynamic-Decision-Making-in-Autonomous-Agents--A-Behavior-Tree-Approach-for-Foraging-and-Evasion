@@ -9,6 +9,8 @@
 
 Implementation of autonomous agents using **Behavior Trees** and **asynchronous programming** within the **AAPE (Autonomous Agents Practice Environment)** platform. The project covers three incremental scenarios involving two types of agents: the **Astronaut** 👩‍🚀 and the **CritterMantaRay** 🦈.
 
+<br>
+
 ---
 
 ## 📋 Table of Contents
@@ -22,11 +24,15 @@ Implementation of autonomous agents using **Behavior Trees** and **asynchronous 
 
 ---
 
+<br>
+
 ## 🌌 Project Overview
 
 This project implements autonomous agent behaviors using the `py_trees` library for Behavior Tree management and Python's `asyncio` for asynchronous execution. Agents communicate with the AAPE Unity simulation environment through a WebSocket connection. All agent logic is modular, separated into reusable Behavior Tree nodes organized by scenario.
 
 ---
+
+<br>
 
 ## 🎮 Scenarios
 
@@ -37,6 +43,8 @@ This project implements autonomous agent behaviors using the `py_trees` library 
 | 3️⃣ | **Collect-and-Run** | The Astronaut must collect flowers as in the Alone scenario while actively avoiding nearby CritterMantaRay agents. |
 
 ---
+
+<br>
 
 ## ⚙️ Environment Setup
 
@@ -50,6 +58,8 @@ This project implements autonomous agent behaviors using the `py_trees` library 
 pip install aiohttp py_trees
 ```
 
+<br>
+
 ### 🔧 AAPE Configuration
 
 1. Download and extract the AAPE release for your operating system.
@@ -57,11 +67,15 @@ pip install aiohttp py_trees
 
 ---
 
+<br>
+
 ## ▶️ How to Run
 
 > ⚠️ **Important:** Always launch AAPE and load the **3-AAC** scene before starting any Python script.
 
 ---
+
+<br>
 
 ### 1️⃣ Scenario 1 — Alone
 
@@ -79,6 +93,8 @@ bt:BTRoam
 
 ---
 
+<br>
+
 ### 2️⃣ Scenario 2 — Critters
 
 First, make sure the Astronaut agent from Scenario 1 is already running (or use a manually controlled Astronaut from AAPE). Then, in a **separate terminal**:
@@ -90,6 +106,8 @@ python Spawner.py APackCritters.json
 🦈 This spawns a group of CritterMantaRay agents that will autonomously roam and hunt the Astronaut.
 
 ---
+
+<br>
 
 ### 3️⃣ Scenario 3 — Collect-and-Run
 
@@ -112,7 +130,13 @@ python Spawner.py APackCritters.json
 
 ---
 
+<br>
+
 ## 🗂️ Project Structure
+
+<br>
+
+```
 AAgent_Python/
 │
 ├── AAgent_BT.py # 🤖 Main agent entry point
@@ -133,6 +157,9 @@ AAgent_Python/
 │
 ├── APackCritters.json # 🌊 Spawner pack — Critters only
 └── APackAstroCritters.json # 🌊 Spawner pack — Astronaut + Critters
+```
+
+<br>
 
 ---
 
